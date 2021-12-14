@@ -15,7 +15,7 @@ Every instruction needs to have specifed:
  - list of parameters (references to parameters specified in parameters config)
  - base (set of bits, which then get overwritten by coded parameters)
 
-How one instruction definition should look like:
+How one instruction definition should look like:  
 ADD[style="color: green"> 00000000000000000000]<REG,REG>
 
  - ADD - Name
