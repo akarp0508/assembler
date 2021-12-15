@@ -2,10 +2,10 @@
 assembler
 
 # Important
-This assembler requires 3 configuration files
+This assembler requires 3 configuration files:
  - instructions list
  - parameters list
- - psuedoinstructions list  
+ - pseudoinstructions list  
 
 General rules for configs and assembly code:
  - Every line with any uncommented non-space character(s) is taken into consideration
@@ -14,7 +14,7 @@ General rules for configs and assembly code:
 
 # Syntax of the parameters list
 Every parameter needs to have specified its:
- - name (later used as referece in instructions config)
+ - name (later used as reference in instructions config)
  - syntax of a parameter, with all numbers named (e.g. "REG[%regnum/usdecnumber(0_32)]", the correct way to write this parameter is REG[0], REG[1], REG[2] ... REG[31])
  - syntax of coding the value in parameters (e.g. 0-5:regnum meaning that the value will be stored in first 5 bits)
  
@@ -40,7 +40,7 @@ Syntax examples:
  and this means that:
   - name = REG
   - the first 5 bits of base will be replaced with 00001 (if the base is not long enough it will give an error)
-  - there will be 5 bits added to the base that contain a binary coded value stored in not signed decimal (minimal value - 0; maximal value - 31) format inside parameter in assembly code
+  - there will be 5 bits added to the base that contain a binary coded value stored in unsigned decimal (minimal value - 0; maximal value - 31) format inside parameter in assembly code
   - the correctly written parameter of this type should look like this "REG[0]"
  
 
@@ -50,7 +50,7 @@ Every instruction needs to have specifed its:
  - list of parameters (references to parameters specified in parameters config)
  - base (set of bits, which then get overwritten by coded parameters)
 
-How one instruction definition should look like:  
+How an instruction definition should look like:  
 ADD[00000000000000000000]<REG><REG|NUMBER>
 
  - ADD - name
