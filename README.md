@@ -5,17 +5,22 @@ assembler
 This assembler requires 3 configuration files
  - instructions list
  - parameters list
- - psuedoinstructions list
+ - psuedoinstructions list  
+
+General rules for configs and assembly code:
+ - Every line with any uncommented non-space character(s) is taken into consideration
+ - Comments can be made with # (everything behind this symbol in the line does not affect assembler)
+ - The bit furthest to right is always bit 0, the next bit on the left is bit 1 and so on
 
 # Syntax of the parameters list
 Every parameter needs to have specified its:
  - name (later used as referece in instructions config)
- - syntax of a parameter, with all numbers named (e.g. "REG[%regnum/decusnumber(0_32)]", the correct way to write this parameter is REG[0], REG[1], REG[2] ... REG[31])
+ - syntax of a parameter, with all numbers named (e.g. "REG[%regnum/usdecnumber(0_32)]", the correct way to write this parameter is REG[0], REG[1], REG[2] ... REG[31])
  - syntax of coding the value in parameters (e.g. 0-5:regnum meaning that the value will be stored in first 5 bits)
  
-Other detiales:
- - you can also code static numbers in a parameter (e.g. 0-5:01001 meaning that 5 first bits will be 01001)
- - tou can also add bits after or before instruction by adding -/+ sign (e.g. +0-5:00000, this means that there will be 00000 added to the end of current instruction code)
+Other details:
+ - you can also code static numbers in a parameter (e.g. 0-5:01001 meaning that 5 first bits of the base will be replaced for 01001)
+ - tou can also add bits after or before instruction by adding +/- sign (e.g. +5:00000, this means that there will be 00000 "on the left" of current instruction code)
  
 There are 6 types of number values you can easily read:
  - number - reads decimal, hexadecimal and binary values
@@ -31,11 +36,12 @@ Syntax:
 NAME<sometext%miniparametername/passToThisParameter>[startbit_endbit:miniparametername]
 
 Syntax examples:
- REG<REG[%regnum/decusnumber(0_32)]>[0-5:regnum]
- 
-There is a possibility of passing parameters. For example:
- Parameters config:
- REG<>
+ REG<REG[%regnum/usdecnumber(0_32)]>[+5:regnum][0_5:00001]
+ and this means that:
+  - name = REG
+  - the first 5 bits of base will be replaced with 00001 (if the base is not long enough it will give an error)
+  - there will be 5 bits added to the base that contain a binary coded value stored in not signed decimal (minimal value - 0; maximal value - 31) format inside parameter in assembly code
+  - the correctly written parameter of this type should look like this "REG[0]"
  
 
 # Syntax of the instructions list
@@ -52,6 +58,4 @@ ADD[00000000000000000000]<REG><REG|NUMBER>
  - REG - reference to parameter specified in parameters config file
  - REG|NUMBER - two references to parameters specified in config file, the first one that does not give error will be used in assembling process
 
-Other detailes:
- - Every line with any uncommented non-space charactes is taken into consideration
- - Comments can be made with # (everything behind this symbol in the line does not affect assembler)
+
