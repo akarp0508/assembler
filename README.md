@@ -10,7 +10,7 @@ This assembler requires 3 configuration files:
 General rules for configs and assembly code:
  - Every line with any uncommented non-space character(s) is taken into consideration
  - Comments can be made with # (everything behind this symbol in the line does not affect assembler)
- - The bit furthest to right is always bit 0, the next bit on the left is bit 1 and so on
+ - Rightmost bit is bit 0, the next bit to the left is bit 1 and so on
 
 # Syntax of the parameters list
 Every parameter needs to have specified its:
