@@ -33,10 +33,10 @@ There are 6 types of number values you can easily read:
 These predefined types of number values have a parameter with the range of values e.g. number(-32_32) means that the number needs to be within -32 (inclusively) and 32 (exclusively)
 
 Syntax:
-NAME<sometext%miniparametername/passToThisParameter>[startbit_endbit:miniparametername]
+NAME<sometext%numberReaderType(range)%>[startbit_endbit:number][startbit_endbit]
 
 Syntax examples:
- REG<REG[%regnum/usdecnumber(0_32)]>[+5:regnum][0_5:00001]
+ REG<REG[%usdecnumber(0_32)%]>[+5][0_5:00001]
  and this means that:
   - name = REG
   - the first 5 bits of base will be replaced with 00001 (if the base is not long enough it will give an error)
